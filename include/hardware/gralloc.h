@@ -137,6 +137,9 @@ enum {
      * gralloc modules. */
     GRALLOC_USAGE_ALLOC_MASK            = ~(GRALLOC_USAGE_FOREIGN_BUFFERS),
 
+    GRALLOC_USAGE_AFBC_MODE             = 0x04000000,
+    GRALLOC_USAGE_METADATA_BUF          = 0x08000000,
+
     /* implementation-specific private usage flags */
     GRALLOC_USAGE_PRIVATE_0             = 0x10000000,
     GRALLOC_USAGE_PRIVATE_1             = 0x20000000,

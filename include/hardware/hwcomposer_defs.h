@@ -215,6 +215,12 @@ enum {
      * Returns a mask of supported display types.
      */
     HWC_DISPLAY_TYPES_SUPPORTED         = 2,
+
+    /*
+     * query(mHwc, HWC_IS_GPU_SKIP_BUFFER, buffer_handle_t)
+     * Returns true if gpu canot deal the buffer.
+     */
+    HWC_IS_SKIP_GPU_BUFFER              = 3,
 };
 
 /* display attributes returned by getDisplayAttributes() */

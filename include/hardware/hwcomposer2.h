@@ -233,6 +233,7 @@ typedef enum {
     HWC2_FUNCTION_SET_POWER_MODE,
     HWC2_FUNCTION_SET_VSYNC_ENABLED,
     HWC2_FUNCTION_VALIDATE_DISPLAY,
+    HWC2_FUNCTION_QUERY,
 } hwc2_function_descriptor_t;
 
 /* Layer requests returned from getDisplayRequests */
@@ -446,6 +447,7 @@ static inline const char* getFunctionDescriptorName(
         case HWC2_FUNCTION_SET_POWER_MODE: return "SetPowerMode";
         case HWC2_FUNCTION_SET_VSYNC_ENABLED: return "SetVsyncEnabled";
         case HWC2_FUNCTION_VALIDATE_DISPLAY: return "ValidateDisplay";
+        case HWC2_FUNCTION_QUERY: return "Query";
         default: return "Unknown";
     }
 }
@@ -632,6 +634,7 @@ enum class FunctionDescriptor : int32_t {
     SetPowerMode = HWC2_FUNCTION_SET_POWER_MODE,
     SetVsyncEnabled = HWC2_FUNCTION_SET_VSYNC_ENABLED,
     ValidateDisplay = HWC2_FUNCTION_VALIDATE_DISPLAY,
+    Query = HWC2_FUNCTION_QUERY,
 };
 TO_STRING(hwc2_function_descriptor_t, FunctionDescriptor,
         getFunctionDescriptorName)
@@ -1949,6 +1952,14 @@ typedef int32_t /*hwc2_error_t*/ (*HWC2_PFN_SET_LAYER_VISIBLE_REGION)(
 typedef int32_t /*hwc2_error_t*/ (*HWC2_PFN_SET_LAYER_Z_ORDER)(
         hwc2_device_t* device, hwc2_display_t display, hwc2_layer_t layer,
         uint32_t z);
+
+/* query(..., what, value)
+ * Used to retrieve information about the h/w composer
+ *
+ * Returns 0 on success or -errno on error.
+ */
+typedef int32_t /*hwc2_error_t*/ (*HWC2_PFN_QUERY)(
+        hwc2_device_t* device, int32_t what, int32_t* value);
 
 __END_DECLS
 

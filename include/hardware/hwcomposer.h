@@ -26,6 +26,8 @@
 
 #include <hardware/hwcomposer_defs.h>
 
+#include "aw_display.h"
+
 __BEGIN_DECLS
 
 /*****************************************************************************/
@@ -153,6 +155,8 @@ typedef struct hwc_layer_1 {
 
             /* blending to apply during composition */
             int32_t blending;
+
+            int32_t /* android_dataspace_t */ dataspace;
 
             /* area of the source to consider, the origin is the top-left corner of
              * the buffer. As of HWC_DEVICE_API_VERSION_1_3, sourceRect uses floats.
@@ -294,13 +298,13 @@ typedef struct hwc_layer_1 {
      * For 64-bit mode, this struct is 120 bytes (and 8-byte aligned), and needs
      * to be padded as such to maintain binary compatibility.
      */
-    uint8_t reserved[120 - 112];
+    uint8_t reserved[120 - 116];
 #else
     /*
      * For 32-bit mode, this struct is 96 bytes, and needs to be padded as such
      * to maintain binary compatibility.
      */
-    uint8_t reserved[96 - 84];
+    uint8_t reserved[96 - 88];
 #endif
 
 } hwc_layer_1_t;

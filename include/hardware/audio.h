@@ -127,7 +127,7 @@ __BEGIN_DECLS
 #define AUDIO_PARAMETER_STREAM_FRAME_COUNT "frame_count"     /* size_t */
 #define AUDIO_PARAMETER_STREAM_INPUT_SOURCE "input_source"   /* audio_source_t */
 #define AUDIO_PARAMETER_STREAM_SAMPLING_RATE "sampling_rate" /* uint32_t */
-
+#define AUDIO_PARAMETER_USB_VOLUME "usbvolume"
 #define AUDIO_PARAMETER_DEVICE_CONNECT "connect"            /* audio_devices_t */
 #define AUDIO_PARAMETER_DEVICE_DISCONNECT "disconnect"      /* audio_devices_t */
 
@@ -163,6 +163,14 @@ __BEGIN_DECLS
 #define AUDIO_OFFLOAD_CODEC_DOWN_SAMPLING  "music_offload_down_sampling"
 #define AUDIO_OFFLOAD_CODEC_DELAY_SAMPLES  "delay_samples"
 #define AUDIO_OFFLOAD_CODEC_PADDING_SAMPLES  "padding_samples"
+#define AUDIO_PARAMETER_RAW_DATA_OUT "raw_data_output"
+
+#define AUDIO_PARAMETER_DEVICES_IN "audio_devices_in"                       // read only
+#define AUDIO_PARAMETER_DEVICES_OUT "audio_devices_out"                     // read only
+#define AUDIO_PARAMETER_DEVICES_IN_ACTIVE "audio_devices_in_active"         // read/write
+#define AUDIO_PARAMETER_DEVICES_OUT_ACTIVE "audio_devices_out_active"       // read/write
+#define AUDIO_PARAMETER_KARAOK_AUDIO_CH    "switchChannel"
+#define AUDIO_PARAMETER_KARAOK_AUDIO_MIC   "micstart"
 
 /**************************************/
 
@@ -462,7 +470,7 @@ static inline size_t audio_stream_frame_size(const struct audio_stream *s)
     size_t chan_samp_sz;
     audio_format_t format = s->get_format(s);
 
-    if (audio_has_proportional_frames(format)) {
+    if (audio_is_linear_pcm(format)) {
         chan_samp_sz = audio_bytes_per_sample(format);
         return popcount(s->get_channels(s)) * chan_samp_sz;
     }
@@ -478,7 +486,7 @@ static inline size_t audio_stream_out_frame_size(const struct audio_stream_out *
     size_t chan_samp_sz;
     audio_format_t format = s->common.get_format(&s->common);
 
-    if (audio_has_proportional_frames(format)) {
+    if (audio_is_linear_pcm(format)) {
         chan_samp_sz = audio_bytes_per_sample(format);
         return audio_channel_count_from_out_mask(s->common.get_channels(&s->common)) * chan_samp_sz;
     }
@@ -494,7 +502,7 @@ static inline size_t audio_stream_in_frame_size(const struct audio_stream_in *s)
     size_t chan_samp_sz;
     audio_format_t format = s->common.get_format(&s->common);
 
-    if (audio_has_proportional_frames(format)) {
+    if (audio_is_linear_pcm(format)) {
         chan_samp_sz = audio_bytes_per_sample(format);
         return audio_channel_count_from_in_mask(s->common.get_channels(&s->common)) * chan_samp_sz;
     }

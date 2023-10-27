@@ -79,6 +79,36 @@ __BEGIN_DECLS
 #define AUDIO_PARAMETER_VALUE_TTY_HCO "tty_hco"
 #define AUDIO_PARAMETER_VALUE_TTY_FULL "tty_full"
 
+/**
+ * audio codec parameters
+ */
+
+#define AUDIO_OFFLOAD_CODEC_PARAMS "music_offload_codec_param"
+#define AUDIO_OFFLOAD_CODEC_BIT_PER_SAMPLE "music_offload_bit_per_sample"
+#define AUDIO_OFFLOAD_CODEC_BIT_RATE "music_offload_bit_rate"
+#define AUDIO_OFFLOAD_CODEC_AVG_BIT_RATE "music_offload_avg_bit_rate"
+#define AUDIO_OFFLOAD_CODEC_ID "music_offload_codec_id"
+#define AUDIO_OFFLOAD_CODEC_BLOCK_ALIGN "music_offload_block_align"
+#define AUDIO_OFFLOAD_CODEC_SAMPLE_RATE "music_offload_sample_rate"
+#define AUDIO_OFFLOAD_CODEC_ENCODE_OPTION "music_offload_encode_option"
+#define AUDIO_OFFLOAD_CODEC_NUM_CHANNEL  "music_offload_num_channels"
+#define AUDIO_OFFLOAD_CODEC_DOWN_SAMPLING  "music_offload_down_sampling"
+#define AUDIO_OFFLOAD_CODEC_DELAY_SAMPLES  "delay_samples"
+#define AUDIO_OFFLOAD_CODEC_PADDING_SAMPLES  "padding_samples"
+#define AUDIO_PARAMETER_RAW_DATA_OUT "raw_data_output"
+
+#define AUDIO_PARAMETER_DEVICES_IN "audio_devices_in"                       // read only
+#define AUDIO_PARAMETER_DEVICES_OUT "audio_devices_out"                     // read only
+#define AUDIO_PARAMETER_DEVICES_IN_ACTIVE "audio_devices_in_active"         // read/write
+#define AUDIO_PARAMETER_DEVICES_OUT_ACTIVE "audio_devices_out_active"       // read/write
+#define AUDIO_PARAMETER_KARAOK_AUDIO_CH    "switchChannel"
+#define AUDIO_PARAMETER_KARAOK_AUDIO_MIC   "micstart"
+
+/* Hearing Aid Compatibility - Telecoil (HAC-T) mode on/off */
+#define AUDIO_PARAMETER_KEY_HAC "HACSetting"
+#define AUDIO_PARAMETER_VALUE_HAC_ON "ON"
+#define AUDIO_PARAMETER_VALUE_HAC_OFF "OFF"
+
 /* Hearing Aid Compatibility - Telecoil (HAC-T) mode on/off */
 #define AUDIO_PARAMETER_KEY_HAC "HACSetting"
 #define AUDIO_PARAMETER_VALUE_HAC_ON "ON"
@@ -107,6 +137,15 @@ __BEGIN_DECLS
 /**
  *  audio stream parameters
  */
+#define AUDIO_PARAMETER_STREAM_ROUTING "routing"             /* audio_devices_t */
+#define AUDIO_PARAMETER_STREAM_FORMAT "format"               /* audio_format_t */
+#define AUDIO_PARAMETER_STREAM_CHANNELS "channels"           /* audio_channel_mask_t */
+#define AUDIO_PARAMETER_STREAM_FRAME_COUNT "frame_count"     /* size_t */
+#define AUDIO_PARAMETER_STREAM_INPUT_SOURCE "input_source"   /* audio_source_t */
+#define AUDIO_PARAMETER_STREAM_SAMPLING_RATE "sampling_rate" /* uint32_t */
+#define AUDIO_PARAMETER_USB_VOLUME "usbvolume"
+#define AUDIO_PARAMETER_DEVICE_CONNECT "connect"            /* audio_devices_t */
+#define AUDIO_PARAMETER_DEVICE_DISCONNECT "disconnect"      /* audio_devices_t */
 
 /* Enable AANC */
 #define AUDIO_PARAMETER_KEY_AANC "aanc_enabled"
